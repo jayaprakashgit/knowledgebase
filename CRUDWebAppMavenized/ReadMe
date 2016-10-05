@@ -1,0 +1,24 @@
+http://localhost:8081/CRUDWebAppMavenized/index
+
+md5 hash generator
+http://www.miraclesalad.com/webtools/md5.php
+
+CREATE TABLE `studentdb`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NULL,
+  `password` VARCHAR(100) NULL,
+  `status` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `studentdb`.`role` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `rolename` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+
+CREATE TABLE `studentdb`.`users_and_roles` (
+  `user_id` INT NOT NULL,
+  `role_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `role_id`));
+
+  
