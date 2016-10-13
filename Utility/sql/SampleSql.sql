@@ -42,3 +42,45 @@ insert into audit values(7, 'xyz', 100, 2);
 
 
 select max(id), account, balance, max(version) from audit group by account, balance;
+
+
+-- To find student name who secured max grade in 'maths' subject
+select 
+	st.student_id, st.student_name, a.grade 
+from
+	student st,
+	(select max(grade) maxgrade, subject_id subid
+	from grade
+	group by subject_id) a,
+	grade gr,
+	subject sb
+where
+	st.student_id = gr.student_id
+	and a.subid = gr.subject_id
+	and a.maxgrade = gr.grade
+	and sb.subject_name = 'maths'
+	and sb.subject_id = a.subid
+	
+
+-- Delete duplicate rows
+select x.*
+from employee x
+where
+rowid not in (select min(rowid) from  employee y where x.empid= y.empid and x.empname = y.empname)
+
+
+select x.* from employee x
+where rowid not in (select min(rowid) from employee y group by empid, empname,....)
+
+
+-- Find the name of the student whose sum of marks secured for english, match and science is high?
+select stud4.name
+from
+(select max(stud2.tot) total from (select name, english+maths+scient tot from student) stud2 ) stud3,
+(select name, english+maths+science tot from student) stud4
+where
+stud3.total = stud4.tot
+
+
+	
+	
